@@ -1,0 +1,4 @@
+function inicio() {
+  return x;
+
+}

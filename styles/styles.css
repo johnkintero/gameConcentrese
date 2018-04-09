@@ -1,0 +1,51 @@
+#tablero{
+    background-color:black;
+    width:346px;
+    height:346px;
+}
+#tablero div{
+    background-color:white;
+    width:112px;
+    height:112px;
+    position:absolute;
+    text-align:center ;
+    font-size:50px;
+    color: white;
+}
+#box1{
+    top:10px;
+    left:11px;
+    z-index: 1;
+}
+#box2{
+    top:10px;
+    left:125px;
+}
+#box3{
+    top:10px;
+    left:239px;
+}
+#box4{
+    top:124px;
+    left:11px;
+}
+#box5{
+    top:124px;
+    left:125px;
+}
+#box6{
+    top:124px;
+    left:239px;
+}
+#box7{
+    top:238px;
+    left:11px;
+}
+#box8{
+    top:238px;
+    left:125px;
+}
+#box9{
+    top:238px;
+    left:239px;
+}

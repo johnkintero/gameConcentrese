@@ -4,12 +4,22 @@
     <meta charset="utf-8">
     <title>Concentrese</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./styles/styles.css">
   </head>
-  <body onload="inicio()">
-    <div id="tablero">
+  <body>
+    <div id="params" style="background-color:pink">
+      <label for="sGame"> Escoja su tablero
+        <select name="" id="sGame">
+          <option value="4">4</option>
+          <option value="16">16</option>
+          <option value="36">36</option>
+          <option value="64">64</option>
+        </select>
+      </label>
+    </div>
+    <!-- <div id="tablero">
       <div id="box1"></div>
       <div id="box2"></div>
       <div id="box3"></div>
@@ -19,6 +29,9 @@
       <div id="box7"></div>
       <div id="box8"></div>
       <div id="box9"></div>
+    </div> -->
+    <div id="newTablero">
+
     </div>
     <div id="divScore">
       <h1>Your Score:</h1>

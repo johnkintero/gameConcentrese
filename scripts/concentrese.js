@@ -1,27 +1,78 @@
 let arrgame = ['0', '0'];
 let nScore = 0;
+const TABLERO = 496;
+let numCajas = 0;
+let str = '';
 
-function inicio() {
-  var arr = new Array('1', '1', '2', '2', '3', '3', '4', '4', '0');
+//function inicio() {
+$(function () {
+    $('#divScore').css('background', 'orange');
+});
+
+/**
+ * Function para detectar el select
+ */
+$('select').change(function () {
+  limpiavariables();
+  $('select option:selected').each(function () {
+    str += $(this).text() + '';
+    $('#newTablero').empty();
+  });
+  numCajas = parseInt(str);
+  var raiz;
+  raiz = Math.floor(Math.sqrt(numCajas));
+  var anchoBox = TABLERO / raiz;
+  var leftInicio = 1;
+  var topValue = 1;
+  //console.log('la raiz es: ' + raiz);
+  for (var i = 0; i < str; i++) {
+    $('#newTablero').append('<div class="caja" id="box' + i + '"></div>');
+    }
+
+  for (var i = 0; i < str; i++) {
+    for (var x = 0; x < raiz; x++) {
+      $('#box' + i).css({'top': topValue, 'left': leftInicio});
+      //console.log('i:' + i + ' x: '+ x);
+      leftInicio = leftInicio + anchoBox + 2;
+      i++;
+    }
+    i--;
+    topValue = topValue + anchoBox + 2;
+    leftInicio = 1;
+  }
+
+  //$('#box1').css( { 'background-color' : 'rgb(132,255,' + leftInicio + ')'})
+  $('#newTablero div').css({'width' : anchoBox, 'height' : anchoBox});
+  $('#pScore').text(str);
+  addArreglo();
+}).change();
+
+function addArreglo() {
+  let arr = [];
+  for (a = 0; a < numCajas / 2; a++) {
+    arr.push(a + 1);
+    arr.push(a + 1);
+  }
+
+  //console.log(arr);
   var box = mezclar();
-  for (i = 0; i < arr.length; i++) {
+  console.log(box);
+  console.log('largo del arreglo: ' + arr.length);
+  for (var i in arr) {
+    console.log('i: ' + i);
     var caja = document.getElementById('box' + box[i]);
+    console.log(caja);
     caja.innerHTML = arr[i];
   }
 }
 
-$(function () {
-  $('#divScore').css('background', 'red');
-  $( 'p' ).text = 'hola funciona';
-});
-
 function mezclar() {
-  var arrbox = new Array(8);
+  var arrbox = [];
   var boxaux;
-  for (i = 0; i <= 8; i++) {
+  for (i = 0; i < numCajas; i++) {
     //alert("evalua posicion: "+i +" valor: "+arrbox[i])
     while (arrbox[i] == undefined) {
-      boxaux = getRandom(1, 10);
+      boxaux = getRandom(0, numCajas);
 
       //alert("el aleatorio es: "+ boxaux);
       if (repetidos(boxaux, arrbox) == false) {
@@ -61,8 +112,8 @@ function repetidos(rnd, arrbox) {
  * Funcion que detecta los click que se ralizan en los elementos div
  * del formulario
  */
-$('div').click(function () {
-  console.log(this.id);
+$('#newTablero').on('click', '.caja', function () {
+  console.log('el elemento es: ' + this.id);
   let idCadena = this.id;
   if (idCadena.includes('box')) {
     console.log(arrgame);
@@ -102,5 +153,15 @@ function juego(objcomp, obj) {
 
 function score() {
   nScore++;
-  $('#pScore').innerHTML = nScore;
+  let aux = document.getElementById('pScore');
+  aux.innerHTML = 'Nuevo Score: ' + nScore;
+  if (nScore == numCajas / 2) {
+    alert('You Win!!!');
+  }
+
+}
+function limpiavariables() {
+  str = '';
+  nScore = 0;
+
 }

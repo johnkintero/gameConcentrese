@@ -12,11 +12,29 @@
     font-size:50px;
     color: white;
 }
-#box1{
-    top:10px;
-    left:11px;
+#newTablero {
+  background-color:black;
+  width: 510px;
+  height: 510px;
+  top : 150px;
+  border: 1px solid #FFF;
+  position:absolute;
+}
+
+#newTablero div{
+  background-color:white;
+  width: 112px;
+  height: 112px;
+  border: 1px solid #000;
+  position:absolute;
+  color: white;
+}
+ #box1{
+    top:100px;
+    left:110px;
     z-index: 1;
 }
+/*
 #box2{
     top:10px;
     left:125px;
@@ -48,4 +66,4 @@
 #box9{
     top:238px;
     left:239px;
-}
+} */

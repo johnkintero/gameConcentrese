@@ -3,48 +3,60 @@ let nScore = 0;
 const TABLERO = 496;
 let numCajas = 0;
 let str = '';
+let auxScore = document.getElementById('pScore');
 
 //function inicio() {
 $(function () {
     $('#divScore').css('background', 'orange');
-});
+  });
 
 /**
  * Function para detectar el select
  */
 $('select').change(function () {
   limpiavariables();
-  $('select option:selected').each(function () {
-    str += $(this).text() + '';
-    $('#newTablero').empty();
-  });
-  numCajas = parseInt(str);
-  var raiz;
-  raiz = Math.floor(Math.sqrt(numCajas));
-  var anchoBox = TABLERO / raiz;
-  var leftInicio = 1;
-  var topValue = 1;
-  //console.log('la raiz es: ' + raiz);
-  for (var i = 0; i < str; i++) {
-    $('#newTablero').append('<div class="caja" id="box' + i + '"></div>');
+  if ($('select option:selected').value != 0) {
+    $('select option:selected').each(function () {
+      str += $(this).text() + '';
+      $('#newTablero').empty();
+    });
+
+    numCajas = parseInt(str);
+    var raiz;
+    raiz = Math.floor(Math.sqrt(numCajas));
+    var anchoBox = TABLERO / raiz;
+    var leftInicio = 1;
+    var topValue = 1;
+
+    //console.log('la raiz es: ' + raiz);
+    for (var i = 0; i < str; i++) {
+      $('#newTablero').append('<div class="caja aling-middle" id="box' + i + '"></div>');
     }
 
-  for (var i = 0; i < str; i++) {
-    for (var x = 0; x < raiz; x++) {
-      $('#box' + i).css({'top': topValue, 'left': leftInicio});
-      //console.log('i:' + i + ' x: '+ x);
-      leftInicio = leftInicio + anchoBox + 2;
-      i++;
+    for (var i = 0; i < str; i++) {
+      for (var x = 0; x < raiz; x++) {
+        $('#box' + i).css({
+          'top': topValue,
+          'left': leftInicio,
+        });
+
+        //console.log('i:' + i + ' x: '+ x);
+        leftInicio = leftInicio + anchoBox + 2;
+        i++;
+      }
+
+      i--;
+      topValue = topValue + anchoBox + 2;
+      leftInicio = 1;
     }
-    i--;
-    topValue = topValue + anchoBox + 2;
-    leftInicio = 1;
+
+    //$('#box1').css( { 'background-color' : 'rgb(132,255,' + leftInicio + ')'})
+    $('#newTablero div').css({
+      'width': anchoBox,
+      'height': anchoBox
+    });
+    addArreglo();
   }
-
-  //$('#box1').css( { 'background-color' : 'rgb(132,255,' + leftInicio + ')'})
-  $('#newTablero div').css({'width' : anchoBox, 'height' : anchoBox});
-  $('#pScore').text(str);
-  addArreglo();
 }).change();
 
 function addArreglo() {
@@ -56,12 +68,12 @@ function addArreglo() {
 
   //console.log(arr);
   var box = mezclar();
-  console.log(box);
-  console.log('largo del arreglo: ' + arr.length);
+  //console.log(box);
+  //console.log('largo del arreglo: ' + arr.length);
   for (var i in arr) {
-    console.log('i: ' + i);
+    //console.log('i: ' + i);
     var caja = document.getElementById('box' + box[i]);
-    console.log(caja);
+    //console.log(caja);
     caja.innerHTML = arr[i];
   }
 }
@@ -113,13 +125,13 @@ function repetidos(rnd, arrbox) {
  * del formulario
  */
 $('#newTablero').on('click', '.caja', function () {
-  console.log('el elemento es: ' + this.id);
+  //console.log('el elemento es: ' + this.id);
   let idCadena = this.id;
   if (idCadena.includes('box')) {
-    console.log(arrgame);
+    //console.log(arrgame);
     if ($(this).css('color') != 'white') {
       $(this).css('color', 'red');
-      $(this).effect('slide', 'slow');
+      $(this).effect('shake', 'slow');
     }
 
     setTimeout(juego, 1000, this.innerHTML, idCadena);
@@ -153,15 +165,21 @@ function juego(objcomp, obj) {
 
 function score() {
   nScore++;
-  let aux = document.getElementById('pScore');
-  aux.innerHTML = 'Nuevo Score: ' + nScore;
+  auxScore.innerHTML = nScore;
   if (nScore == numCajas / 2) {
     alert('You Win!!!');
   }
 
 }
+
 function limpiavariables() {
   str = '';
   nScore = 0;
-
+  $('#newTablero').empty();
 }
+
+$('#btnNewGame').click(function () {
+  limpiavariables();
+  $('select option:eq(0)').prop('selected', true);
+  auxScore.innerHTML = nScore;
+});

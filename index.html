@@ -6,37 +6,48 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./styles/styles.css">
   </head>
   <body>
-    <div id="params" style="background-color:pink">
+    <div class="container">
+
+    <div class="row justify-content-md-center">
+    <div class="col-sm-6">
+
+
+    <div class="card text-white bg-success" style="min-width:550px" >
+      <div class="card-body">
+        <h4 class="card-title text-center">Concentrese</h4>
+
+    <div id="params" class="card-block">
       <label for="sGame"> Escoja su tablero
         <select name="" id="sGame">
+          <option value="0" selected>Select...</option>
           <option value="4">4</option>
           <option value="16">16</option>
           <option value="36">36</option>
           <option value="64">64</option>
         </select>
       </label>
+  <hr>
     </div>
-    <!-- <div id="tablero">
-      <div id="box1"></div>
-      <div id="box2"></div>
-      <div id="box3"></div>
-      <div id="box4"></div>
-      <div id="box5"></div>
-      <div id="box6"></div>
-      <div id="box7"></div>
-      <div id="box8"></div>
-      <div id="box9"></div>
-    </div> -->
-    <div id="newTablero">
+    <div id="divScore" class="card-text">
+      <p>Your Score: <span id="pScore"></span></p>
+    </div>
+    <div id="newTablero" class="card-body position-relative">
 
     </div>
-    <div id="divScore">
-      <h1>Your Score:</h1>
-      <p id="pScore">holasss</p>
+    <div class="card-block">
+      <br>
+      <button id="btnNewGame" type="button" class="btn btn-primary btn-block">Iniciar de nuevo</button>
     </div>
+  </div>
+  </div>
+  </div>
+  </div>
+</div>
+
     <script src="./scripts/game.js"></script>
     <script src="./scripts/concentrese.js"></script>
   </body>
